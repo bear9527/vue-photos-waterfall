@@ -28,45 +28,86 @@
   content: "\e900";
   color: #abaaba;
 }
-.icon-byg_heart:before {
+.icon-bigright:before {
   content: "\e901";
+  color: #dbdbdb;
+}
+.icon-byg_heart:before {
+  content: "\e902";
   color: #dcdcdc;
 }
 .icon-camera:before {
-  content: "\e902";
-}
-.icon-friends:before {
   content: "\e903";
-  color: #aaa9b7;
 }
-.icon-heart:before {
+.icon-flag:before {
   content: "\e904";
 }
-.icon-home:before {
+.icon-friends:before {
   content: "\e905";
   color: #aaa9b7;
 }
-.icon-magnifier:before {
+.icon-heart:before {
   content: "\e906";
-  color: #aaa9b7;
 }
-.icon-personal-enter:before {
+.icon-home:before {
   content: "\e907";
   color: #aaa9b7;
 }
-.icon-photograph:before {
+.icon-input:before {
   content: "\e908";
-  color: #abaaba;
 }
-.icon-return:before {
+.icon-list:before {
   content: "\e909";
-  color: #aaa9b7;
 }
-.icon-thumbs-up:before {
+.icon-listfk:before {
   content: "\e90a";
-  color: #abaaba;
 }
-.icon-up-load:before {
+.icon-magnifier:before {
   content: "\e90b";
   color: #aaa9b7;
+}
+.icon-news:before {
+  content: "\e90c";
+}
+.icon-personal-enter:before {
+  content: "\e90d";
+  color: #aaa9b7;
+}
+.icon-photograph:before {
+  content: "\e90e";
+  color: #abaaba;
+}
+.icon-qq:before {
+  content: "\e90f";
+}
+.icon-return:before {
+  content: "\e910";
+  color: #aaa9b7;
+}
+.icon-send:before {
+  content: "\e911";
+  color: #26a97b;
+}
+.icon-share:before {
+  content: "\e912";
+  color: #dbdbdb;
+}
+.icon-thumbs-up:before {
+  content: "\e913";
+  color: #abaaba;
+}
+.icon-timer:before {
+  content: "\e914";
+  color: #dbdbdb;
+}
+.icon-up-load:before {
+  content: "\e915";
+  color: #aaa9b7;
+}
+.icon-weibo:before {
+  content: "\e916";
+}
+.icon-weixin:before {
+  content: "\e917";
+  color: #38836c;
 }

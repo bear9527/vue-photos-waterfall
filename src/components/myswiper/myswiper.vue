@@ -1,41 +1,41 @@
 <template>
   <div class="swiper-container-wrapper" @touchmove="dft_prop($event)">
-    <span class="close" @click="closeit">×</span>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide item" v-for="listitem in listsABC" :key="listitem.id">
-            <img class="item-img" :height="listitem.height/1.4" v-lazy="listitem.picUrl">
-            <div class="content">
-              <div class="content-up">
-                <div class="up-wrapper">
-                  <span class="con-dec" v-text="listitem.description"></span>
-                  <div class="likeit">
-                    <span v-text="listitem.dzs">26</span>
-                    <i :class="[ismylike[listitem.ismylike] ? ismylike[listitem.ismylike] : ismylike[0]]" @click="mylikeit($event, listitem.picid)"></i>
+      <span class="close" @click="closeit">×</span>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide item" v-for="listitem in listsABC" :key="listitem.id">
+              <img class="item-img" :height="listitem.height/1.4" v-lazy="listitem.picUrl">
+              <div class="content">
+                <div class="content-up">
+                  <div class="up-wrapper">
+                    <span class="con-dec" v-text="listitem.description"></span>
+                    <div class="likeit">
+                      <span v-text="listitem.dzs">26</span>
+                      <i :class="[ismylike[listitem.ismylike] ? ismylike[listitem.ismylike] : ismylike[0]]" @click="mylikeit($event, listitem.picid)"></i>
+                    </div>
+                  </div>
+                  <a class="linkin" :href="listitem.url" @click.stop="clickpicdetail(listitem, $event)">点击进入➜</a>
+                </div>
+                <div class="content-down">
+                  <div class="headerimg">
+                    <img :src="listitem.header_img">
+                  </div>
+                  <div class="personinfo">
+                    <span class="self-dec" v-text="listitem.my_dec">一个人在这儿</span>
+                    <span class="name" v-text="listitem.name">Name</span>
                   </div>
                 </div>
-                <a class="linkin" :href="listitem.url">点击进入➜</a>
               </div>
-              <div class="content-down">
-                <div class="headerimg">
-                  <img :src="listitem.header_img">
-                </div>
-                <div class="personinfo">
-                  <span class="self-dec" v-text="listitem.my_dec">一个人在这儿</span>
-                  <span class="name" v-text="listitem.name">Name</span>
-                </div>
-              </div>
-            </div>
+          </div>
         </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+        <!-- 如果需要导航按钮 -->
+        <div class="icon-arrow icon-arrow-prev"></div>
+        <div class="icon-arrow-next icon-arrow"></div>
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar"></div>
       </div>
-      <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
-      <!-- 如果需要导航按钮 -->
-      <div class="icon-arrow icon-arrow-prev"></div>
-      <div class="icon-arrow-next icon-arrow"></div>
-      <!-- 如果需要滚动条 -->
-      <div class="swiper-scrollbar"></div>
-    </div>
   </div>
 </template>
 
@@ -82,6 +82,12 @@
       },
       dft_prop: (e) => { // 禁止在footer上触摸 body的滚动
         e.preventDefault();
+      },
+      clickpicdetail (pic, event) { // 点击点击进入
+        if (!event._constructed) {
+          return;
+        }
+        this.$emit('clickpicdetailpar', pic, event); // 把点击当前的数据传给父组件 之后父组件把数据传给图片详情组件
       }
     },
     computed: {

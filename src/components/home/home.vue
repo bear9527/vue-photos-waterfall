@@ -1,6 +1,7 @@
 <template>
   <div class="waterfall-warpper">
-    <WaterFall :listsAll="listsAll" @clickLikeIt="clickLikeIt"></WaterFall>
+    <WaterFall :listsAll="listsAll" @clickLikeIt="clickLikeIt" @clickpicdetailpar="clickpicdetailpar"></WaterFall>
+    <picturedetails v-show="picobj" :picobj="picobj" ref="picdetail"></picturedetails>
   </div>
 </template>
 
@@ -8,6 +9,7 @@
   import WaterFall from 'components/waterfall/waterfall'
   import {urlParse} from 'common/js/util'
   import '../../../static/js/hotcss.js'
+  import picturedetails from 'components/picturedetails/picturedetails'
   export default {
     name: 'home',
     data () {
@@ -18,7 +20,8 @@
             return queryParam.id;
           })()
         },
-        listsAll: []
+        listsAll: [],
+        picobj: null
       }
     },
     methods: {
@@ -44,6 +47,13 @@
           // .catch(function (error) {
           //  console.log(error);
           // });
+      },
+      clickpicdetailpar (pic, event) { // 点击图片详情
+        if (!event._constructed) {
+          return;
+        }
+        this.picobj = pic;
+        this.$refs.picdetail.show(); // 执行图片详情页组件里的show方法
       }
     },
     mounted () {
@@ -52,7 +62,8 @@
       this.getData();
     },
     components: {
-      WaterFall
+      WaterFall,
+      picturedetails
     }
   }
 </script>

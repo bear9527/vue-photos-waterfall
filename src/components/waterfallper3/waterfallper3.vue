@@ -1,79 +1,80 @@
 <template>
   <div class="itemWrapper" ref="itemWrapper">
     <div class="list-wrapper home">
-      <div class="con-wrapper list-left" ref="boxA">
+      <div class="con-wrapper list-left">
         <div class="item" v-for="listitem in listsA" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
-          <img class="item-img" :height="listitem.height/1.4" v-lazy="listitem.picUrl">
+          <img class="item-img" :height="listitem.height/2" v-lazy="listitem.picUrl">
           <div class="content">
-            <div class="content-up">
-              <div class="up-wrapper">
-                <span class="con-dec" v-text="listitem.description"></span>
-                <div class="likeit">
-                  <span v-text="listitem.dzs">26</span>
-                  <i :class="[ismylike[listitem.ismylike] ? ismylike[listitem.ismylike] : ismylike[0]]" @click.stop="mylikeit($event, listitem.picid)"></i>
-                </div>
+            <div class="conItem">
+              <div class="conItemBg">
+                <span class="text">点赞</span>
+                <span class="num">999</span>
               </div>
-              <a class="linkin" :href="listitem.url" @click.stop="clickpicdetail(listitem, $event)">点击进入➜</a>
             </div>
-            <div class="content-down">
-              <div class="headerimg">
-                <img :src="listitem.header_img">
+            <div class="conItem">
+              <div class="conItemBg">
+                <span class="text">收藏</span>
+                <span class="num">998</span>
               </div>
-              <div class="personinfo">
-                <span class="self-dec" v-text="listitem.my_dec">一个人在这儿</span>
-                <span class="name" v-text="listitem.name">Name</span>
+            </div>
+            <div class="conItem">
+              <div class="conItemBg">
+                <span class="text">评论</span>
+                <span class="num">909</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="con-wrapper list-center" ref="boxC">
-        <div class="item" v-for="listitem in listsC" :key="listitem.id" @click="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
-          <img class="item-img" :height="listitem.height/1.4" v-lazy="listitem.picUrl">
-          <div class="content">
-            <div class="content-up">
-              <div class="up-wrapper">
-                <span class="con-dec" v-text="listitem.description"></span>
-                <div class="likeit">
-                  <span v-text="listitem.dzs">26</span>
-                  <i :class="[ismylike[listitem.ismylike] ? ismylike[listitem.ismylike] : ismylike[0]]" @click.stop="mylikeit($event, listitem.picid)"></i>
+      <div class="con-wrapper list-center">
+        <div class="con-wrapper list-left">
+          <div class="item" v-for="listitem in listsC" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
+            <img class="item-img" :height="listitem.height/2" v-lazy="listitem.picUrl">
+            <div class="content">
+              <div class="conItem">
+                <div class="conItemBg">
+                  <span class="text">点赞</span>
+                  <span class="num">999</span>
                 </div>
               </div>
-              <a class="linkin" :href="listitem.url" @click.stop="clickpicdetail(listitem, $event)">点击进入➜</a>
-            </div>
-            <div class="content-down">
-              <div class="headerimg">
-                <img :src="listitem.header_img">
+              <div class="conItem">
+                <div class="conItemBg">
+                  <span class="text">收藏</span>
+                  <span class="num">998</span>
+                </div>
               </div>
-              <div class="personinfo">
-                <span class="self-dec" v-text="listitem.my_dec">一个人在这儿</span>
-                <span class="name" v-text="listitem.name">Name</span>
+              <div class="conItem">
+                <div class="conItemBg">
+                  <span class="text">评论</span>
+                  <span class="num">909</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="con-wrapper list-right" ref="boxB">
-        <div class="item" v-for="listitem in listsB" :key="listitem.id" @click="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
-          <img class="item-img" :height="listitem.height/1.4" v-lazy="listitem.picUrl">
-          <div class="content">
-            <div class="content-up">
-              <div class="up-wrapper">
-                <span class="con-dec" v-text="listitem.description"></span>
-                <div class="likeit">
-                  <span v-text="listitem.dzs">26</span>
-                  <i :class="[ismylike[listitem.ismylike] ? ismylike[listitem.ismylike] : ismylike[0]]" @click.stop="mylikeit($event, listitem.picid)"></i>
+      <div class="con-wrapper list-right">
+        <div class="con-wrapper list-left">
+          <div class="item" v-for="listitem in listsB" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
+            <img class="item-img" :height="listitem.height/2" v-lazy="listitem.picUrl">
+            <div class="content">
+              <div class="conItem">
+                <div class="conItemBg">
+                  <span class="text">点赞</span>
+                  <span class="num">999</span>
                 </div>
               </div>
-              <a class="linkin" :href="listitem.url" @click.stop="clickpicdetail(listitem, $event)">点击进入➜</a>
-            </div>
-            <div class="content-down">
-              <div class="headerimg">
-                <img :src="listitem.header_img">
+              <div class="conItem">
+                <div class="conItemBg">
+                  <span class="text">收藏</span>
+                  <span class="num">998</span>
+                </div>
               </div>
-              <div class="personinfo">
-                <span class="self-dec" v-text="listitem.my_dec">一个人在这儿</span>
-                <span class="name" v-text="listitem.name">Name</span>
+              <div class="conItem">
+                <div class="conItemBg">
+                  <span class="text">评论</span>
+                  <span class="num">909</span>
+                </div>
               </div>
             </div>
           </div>
@@ -98,7 +99,7 @@
   import MySwiper from 'components/myswiper/myswiper';
   import '../../../static/js/hotcss.js'
   export default {
-    name: 'waterfall',
+    name: 'home',
     props: {
       listsAll: {
         type: Array,
@@ -200,10 +201,9 @@
       },
       moreData () { // 加载更多数据
         // 加载完页面执行的函数
-        let _this = this;
-        let boxA = _this.$refs.boxA.style.height
-        let boxB = _this.$refs.boxB.style.height
-        let boxC = _this.$refs.boxC.style.height
+        let boxA = document.getElementsByClassName('list-left')[0].clientHeight
+        let boxB = document.getElementsByClassName('list-right')[0].clientHeight
+        let boxC = document.getElementsByClassName('list-center')[0].clientHeight
         let boxBody = document.getElementsByTagName('body')[0].clientWidth
         let that = this;
         this.itemsOld = this.items;
@@ -212,43 +212,23 @@
         this.lists = this.listsAll.slice(this.itemsOld, this.items);
         for (let val of this.lists) {
           setTimeout(() => {
-            boxA = _this.$refs.boxA.clientHeight
-            boxB = _this.$refs.boxB.clientHeight
-            boxC = _this.$refs.boxC.clientHeight
-
+            boxA = document.getElementsByClassName('list-left')[0].clientHeight
+            boxB = document.getElementsByClassName('list-right')[0].clientHeight
+            boxC = document.getElementsByClassName('list-center')[0].clientHeight
             if (boxBody >= 768) { // 判断屏幕超过768的时候三列展示否则两列
-              let num = Math.min(boxA, boxB, boxC);
-            //  debugger;
-              switch (num) {
-                case boxA:
-                  that.listsA.push(val)
-                  that.isAllNum++
-                  break;
-                case boxB:
+              if (boxA <= boxB && boxA <= boxC) {
+                that.listsA.push(val)
+                that.isAllNum++
+              } else if (boxB <= boxA && boxB <= boxC) {
                   that.listsB.push(val)
                   that.isAllNum++
-                  break;
-                case boxC:
+              } else if (boxC <= boxA && boxC <= boxB) {
                   that.listsC.push(val)
                   that.isAllNum++
-                  break;
-                default:
-                  that.listsA.push(val)
+              } else {
+                that.listsA.push(val)
                   that.isAllNum++
               }
-              // if (boxA <= boxB && boxA <= boxC) {
-              //   that.listsA.push(val)
-              //   that.isAllNum++
-              // } else if (boxB <= boxA && boxB <= boxC) {
-              //     that.listsB.push(val)
-              //     that.isAllNum++
-              // } else if (boxC <= boxA && boxC <= boxB) {
-              //     that.listsC.push(val)
-              //     that.isAllNum++
-              // } else {
-              //   that.listsA.push(val)
-              //     that.isAllNum++
-              // }
             } else {
               if (boxA > boxB) {
                 that.listsB.push(val)
@@ -258,16 +238,16 @@
                   that.isAllNum++
               } else {
                 that.listsA.push(val)
-                that.isAllNum++
+                  that.isAllNum++
               }
             }
+            this.$nextTick(() => {
+              this.updata = '已更新'
+                this.pullingDownUp()
+                this.scroll.finishPullUp()
+                this.scroll.refresh() // 重新计算元素高度
+              })
           }, 1000)
-          this.$nextTick(() => {
-            this.updata = '已更新'
-            this.pullingDownUp()
-            this.scroll.finishPullUp()
-            this.scroll.refresh() // 重新计算元素高度
-          })
         }
       },
       setData () { // 加载数据
@@ -294,12 +274,6 @@
       },
       clickClose (picid) {
         this.scroll.enable()
-      },
-      clickpicdetail (pic, event) { // 点击点击进入
-        if (!event._constructed) {
-          return;
-        }
-        this.$emit('clickpicdetailpar', pic, event); // 把点击当前的数据传给父组件 之后父组件把数据传给图片详情组件
       }
     },
     computed: {
@@ -377,79 +351,33 @@ $designWidth : 750;
       max-height: 100%;
     }
     .content{
+      width: 100%;
       position: absolute;
       bottom: 0;
-      padding: px2rem(18);
-      background-image: -webkit-linear-gradient(top,rgba(0,0,0,0.08) 10%,rgba(0,0,0,1) 100%);
-      //background-image: -webkit-linear-gradient(top,rgba(0,0,0,0.08) 10%, black 100%);
-      //background-image: -moz-linear-gradient(top,rgba(255,255,255,0.08) 10%,rgba(0,0,0,1) 100%);
-      //background-image: -o-linear-gradient(top,rgba(0,0,0,0.08) 10%,rgba(0,0,0,1) 100%);
-      // background-image: linear-gradient(top,rgba(0,0,0,0.08) 10%rgba(0,0,0,1) 100%);
-      border-radius: px2rem(8);
-      .content-up{
-        .up-wrapper{
-          display: flex;
-          .con-dec{
-            flex:1;
-            font-size:px2rem(18);
-            display: -webkit-box;
-            -webkit-box-orient:vertical;
-            -webkit-line-clamp:4;
-            overflow: hidden;
-            background-image: -webkit-linear-gradient(top,rgba(0,0,0,0) 10%,rgba(0,0,0,0) 100%);
-            color:#aaaaaa;
-          }
-          .likeit{
-            display: flex;
-            flex:0 0 px2rem(50);
-            height: px2rem(24);
-            font-size:px2rem(16);
-            color:#989898;
-            span{
-              flex:1;
-              font-size:px2rem(13);
-            }
-            i{
-              flex:1;
-            }
-            .icon-byg_heart{
-              color: #eaeaea;
-            }
-          }
-        }
-        .linkin{
-          font-size:px2rem(18);
-          color:#8d8d8d;
-          text-decoration: none;
-          padding: px2rem(15) 0;
-          display: inline-block;
-        }
-      }
-      .content-down{
-        .headerimg{
-          width:px2rem(58);
-          height:px2rem(58);
+      // padding: px2rem(18);
+      display: flex;
+      .conItem{
+        flex: 1;
+        margin-bottom: px2rem(30);
+        .conItemBg{
+          width: px2rem(38);
+          height: px2rem(38);
+          border: px2rem(2) solid #666;
+          margin: 0 auto;
+          padding: px2rem(12);
+          background-color: rgba(0,0,0,0.7);
           border-radius: 50%;
-          background-color: #fff;
-          display: inline-block;
-          vertical-align: top;
-          img{
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-          }
-        }
-        .personinfo{
-          display: inline-block;
-          margin-left: px2rem(14);
-          font-size: px2rem(19);
-          .self-dec{
-            display:block;
-            color: #919191;
-          }
-          .name{
+          color:#fff;
+          text-align: center;
+          .text{
+            font-size:px2rem(13);
+            line-height: px2rem(13);
             display: block;
-            color:#4f4f4f;
+          }
+          .num{
+            font-size:px2rem(20);
+            line-height: px2rem(29);
+            display: block;
           }
         }
       }
@@ -489,6 +417,14 @@ $designWidth : 750;
 }
 //MySwiper
 .MySwiper-wrapper{
+  // width: 100vw;
+  // height: 100vh;
+  // position: fixed;
+  // top: px2rem(0);
+  // left: px2rem(0);
+  // z-index: 9999;
+  // padding: px2rem(100) px2rem(20);
+  // background-color: rgba(0,0,0,0.5);
   .MySwiper{
     // width: 90%;
     // height: 80vh;
