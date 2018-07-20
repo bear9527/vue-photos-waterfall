@@ -98,7 +98,7 @@
   import MySwiper from 'components/myswiper/myswiper';
   import '../../../static/js/hotcss.js'
   export default {
-    name: 'waterfall',
+    name: 'list-wrapper',
     props: {
       listsAll: {
         type: Array,
@@ -201,9 +201,9 @@
       moreData () { // 加载更多数据
         // 加载完页面执行的函数
         let _this = this;
-        let boxA = _this.$refs.boxA.style.height
-        let boxB = _this.$refs.boxB.style.height
-        let boxC = _this.$refs.boxC.style.height
+        let boxA = _this.$refs.boxA.clientHeight
+        let boxB = _this.$refs.boxB.clientHeight
+        let boxC = _this.$refs.boxC.clientHeight
         let boxBody = document.getElementsByTagName('body')[0].clientWidth
         let that = this;
         this.itemsOld = this.items;
@@ -218,8 +218,7 @@
 
             if (boxBody >= 768) { // 判断屏幕超过768的时候三列展示否则两列
               let num = Math.min(boxA, boxB, boxC);
-            //  debugger;
-              switch (num) {
+              switch (num) { // 查找那个是最小的然后赋值给它
                 case boxA:
                   that.listsA.push(val)
                   that.isAllNum++
@@ -236,20 +235,7 @@
                   that.listsA.push(val)
                   that.isAllNum++
               }
-              // if (boxA <= boxB && boxA <= boxC) {
-              //   that.listsA.push(val)
-              //   that.isAllNum++
-              // } else if (boxB <= boxA && boxB <= boxC) {
-              //     that.listsB.push(val)
-              //     that.isAllNum++
-              // } else if (boxC <= boxA && boxC <= boxB) {
-              //     that.listsC.push(val)
-              //     that.isAllNum++
-              // } else {
-              //   that.listsA.push(val)
-              //     that.isAllNum++
-              // }
-            } else {
+            } else { // 判断屏幕小于768的时候两列
               if (boxA > boxB) {
                 that.listsB.push(val)
                 that.isAllNum++
@@ -318,6 +304,9 @@
         this._initScroll();
         this.setData();
       });
+    },
+    activated () {
+      this.scroll.refresh(); // 切换路由刷新一下bs
     },
     watch: {
       lists: {

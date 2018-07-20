@@ -27,8 +27,7 @@
         </div>
       </div>
       <div class="con-wrapper list-center">
-        <div class="con-wrapper list-left">
-          <div class="item" v-for="listitem in listsC" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
+        <div class="item" v-for="listitem in listsC" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
             <img class="item-img" :height="listitem.height/2" v-lazy="listitem.picUrl">
             <div class="content">
               <div class="conItem">
@@ -50,12 +49,10 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <div class="con-wrapper list-right">
-        <div class="con-wrapper list-left">
-          <div class="item" v-for="listitem in listsB" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
+        <div class="item" v-for="listitem in listsB" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
             <img class="item-img" :height="listitem.height/2" v-lazy="listitem.picUrl">
             <div class="content">
               <div class="conItem">
@@ -77,7 +74,6 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <div class="loading">
@@ -282,7 +278,6 @@
       }
     },
     mounted () {
-      this._initScroll(); // 切换路由刷新一下bs
       window.onresize = () => {
         this.resets();
       };
@@ -291,6 +286,11 @@
       this.$nextTick(() => {
         this._initScroll();
         this.setData();
+      });
+    },
+    activated () {
+      this.$nextTick(() => {
+        this.scroll.refresh(); // 切换路由刷新一下bs
       });
     },
     watch: {

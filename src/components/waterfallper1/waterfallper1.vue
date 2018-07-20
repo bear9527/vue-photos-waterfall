@@ -1,7 +1,7 @@
 <template>
   <div class="itemWrapper" ref="itemWrapper">
     <div class="list-wrapper home">
-      <div class="con-wrapper list-left">
+      <div class="con-wrapper list-left" ref="boxA">
         <div class="item" v-for="listitem in listsA" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
           <img class="item-img" :height="listitem.height/2" v-lazy="listitem.picUrl">
           <div class="content">
@@ -26,9 +26,8 @@
           </div>
         </div>
       </div>
-      <div class="con-wrapper list-center">
-        <div class="con-wrapper list-left">
-          <div class="item" v-for="listitem in listsC" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
+      <div class="con-wrapper list-center" ref="boxC">
+        <div class="item" v-for="listitem in listsC" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
             <img class="item-img" :height="listitem.height/2" v-lazy="listitem.picUrl">
             <div class="content">
               <div class="conItem">
@@ -50,12 +49,10 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
-      <div class="con-wrapper list-right">
-        <div class="con-wrapper list-left">
-          <div class="item" v-for="listitem in listsB" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
+      <div class="con-wrapper list-right" ref="boxB">
+        <div class="item" v-for="listitem in listsB" :key="listitem.id" @click.stop="click_item(listitem.dataIndex)" :data-index="listitem.dataIndex">
             <img class="item-img" :height="listitem.height/2" v-lazy="listitem.picUrl">
             <div class="content">
               <div class="conItem">
@@ -77,7 +74,6 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <div class="loading">
@@ -201,32 +197,37 @@
       },
       moreData () { // 加载更多数据
         // 加载完页面执行的函数
-        let boxA = document.getElementsByClassName('list-left')[0].clientHeight
-        let boxB = document.getElementsByClassName('list-right')[0].clientHeight
-        let boxC = document.getElementsByClassName('list-center')[0].clientHeight
-        let boxBody = document.getElementsByTagName('body')[0].clientWidth
         let that = this;
+        let boxA = that.$refs.boxA.clientHeight
+        let boxB = that.$refs.boxB.clientHeight
+        let boxC = that.$refs.boxC.clientHeight
+        let boxBody = document.getElementsByTagName('body')[0].clientWidth
         this.itemsOld = this.items;
         this.items += 10;
         this.lists = [];
         this.lists = this.listsAll.slice(this.itemsOld, this.items);
         for (let val of this.lists) {
           setTimeout(() => {
-            boxA = document.getElementsByClassName('list-left')[0].clientHeight
-            boxB = document.getElementsByClassName('list-right')[0].clientHeight
-            boxC = document.getElementsByClassName('list-center')[0].clientHeight
+            boxA = that.$refs.boxA.clientHeight
+            boxB = that.$refs.boxB.clientHeight
+            boxC = that.$refs.boxC.clientHeight
             if (boxBody >= 768) { // 判断屏幕超过768的时候三列展示否则两列
-              if (boxA <= boxB && boxA <= boxC) {
-                that.listsA.push(val)
-                that.isAllNum++
-              } else if (boxB <= boxA && boxB <= boxC) {
+              let num = Math.min(boxA, boxB, boxC);
+              switch (num) {
+                case boxA:
+                  that.listsA.push(val)
+                  that.isAllNum++
+                  break;
+                case boxB:
                   that.listsB.push(val)
                   that.isAllNum++
-              } else if (boxC <= boxA && boxC <= boxB) {
+                  break;
+                case boxC:
                   that.listsC.push(val)
                   that.isAllNum++
-              } else {
-                that.listsA.push(val)
+                  break;
+                default:
+                  that.listsA.push(val)
                   that.isAllNum++
               }
             } else {
@@ -241,14 +242,14 @@
                   that.isAllNum++
               }
             }
-            this.$nextTick(() => {
-              this.updata = '已更新'
-                this.pullingDownUp()
-                this.scroll.finishPullUp()
-                this.scroll.refresh() // 重新计算元素高度
-              })
           }, 1000)
         }
+        this.$nextTick(() => {
+          this.updata = '已更新'
+            this.pullingDownUp()
+            this.scroll.finishPullUp()
+            this.scroll.refresh() // 重新计算元素高度
+        })
       },
       setData () { // 加载数据
         setTimeout(() => {
@@ -282,7 +283,6 @@
       }
     },
     mounted () {
-      this._initScroll(); // 切换路由刷新一下bs
       window.onresize = () => {
         this.resets();
       };
@@ -291,6 +291,11 @@
       this.$nextTick(() => {
         this._initScroll();
         this.setData();
+      });
+    },
+    activated () {
+      this.$nextTick(() => {
+        this.scroll.refresh(); // 切换路由刷新一下bs
       });
     },
     watch: {
@@ -325,7 +330,7 @@ $designWidth : 750;
 .home{
   display: flex;
   padding: px2rem(20);
-  padding-right: 0;
+  // padding-right: 0;
   .con-wrapper{
     flex:1;
     flex-wrap: nowrap;
