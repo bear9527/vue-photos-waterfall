@@ -1,7 +1,8 @@
 # bear-photos
 
-> A Vue.js project
+> 一个有瀑布流的vue项目,技术栈：vue2 + vue-router + vue-cli2 + vue-axios + sass + flex布局 + es6 + eslint + webpack + hotcss （未完待续但可以run，瀑布流页面已完成 ）欢迎star
 
+![Image text](https://github.com/bear9527/img-folder/blob/master/img-folder/ezgif.com-video-to-gif.gif)
 ## Build Setup
 
 ``` bash
