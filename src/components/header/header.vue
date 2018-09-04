@@ -39,7 +39,12 @@ export default {
       e.preventDefault();
     }
   },
-  created: function () {
+  created () {
+    // this.$nextTick(() => {
+    //   console.log(this.$el)
+    // });
+  },
+  mounted () {
   }
 }
 </script>
